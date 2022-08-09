@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Container = styled.div`
+const VertContainer = styled.div`
   padding: 0 0.5rem;
   display: flex;
   flex-flow: column nowrap;
@@ -9,6 +9,16 @@ const Container = styled.div`
   height: 100vh;
   min-height: 100vh;
 `
+const HorContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row;
+  max-width: 800px;
+  margin-top: 32px;
+  gap: 16px;
+`
+
 const Main = styled.main`
   padding: 5rem 0;
   flex: 1;
@@ -18,15 +28,23 @@ const Main = styled.main`
   align-items: center;
 `
 
-const Title = styled.h1`
+const Block = styled.div`
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  background-color: black;
+`
+
+const Title = styled.h1<{backgroundColor: string}>`
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
   text-align: center;
   text-decoration: none;
+  color: ${props => props.color};
+  background-color: ${props => props.backgroundColor};
 
   a {
-    color: ${({ theme }) => theme.colors.secondary};
     text-decoration: none;
     &:hover,
     :focus,
@@ -51,4 +69,4 @@ const CodeTag = styled.code`
     Bitstream Vera Sans Mono, Courier New, monospace;
 `
 
-export { Container, Main, Title, Description, CodeTag }
+export { HorContainer, VertContainer, Main, Title, Description, CodeTag }

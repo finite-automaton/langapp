@@ -1,13 +1,19 @@
 import styled from 'styled-components'
-import Link from 'next/link'
+
+enum State {
+  Guessing,
+  Won,
+  Lost,
+}
 
 const FlexContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-flow: column wrap;
+  flex-flow: row;
   max-width: 800px;
-  margin-top: 3rem;
+  margin-top: 32px;
+  gap: 8px;
 `
 
 const Card = styled.div`
@@ -32,17 +38,25 @@ const StyledA = styled.a`
   font-size: 1.5rem;
 `
 
-const StyledLink = ({ href, name }) => (
-  <Link href={href} passHref>
-    <StyledA>{name}</StyledA>
-  </Link>
-)
+type Props = {
+  callbackFn: (guess: string) => void;
+  gameState: State;
+}
 
-export default function Cards() {
+export default function Cards({gameState, callbackFn}) {
+
+  callbackFn = gameState === State.Guessing ? callbackFn : () => {};
+
   return (
     <FlexContainer>
-      <Card>
-        <StyledLink href="/about" name="About Page &rarr;" />
+      <Card onClick={() => callbackFn('M')}>
+        Der
+      </Card>
+      <Card onClick={() => callbackFn('F')}>
+        Die
+      </Card>
+      <Card onClick={() => callbackFn('N')}>
+        Das
       </Card>
     </FlexContainer>
   )
